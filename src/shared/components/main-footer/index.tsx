@@ -4,7 +4,7 @@ export default function MainFooter() {
     const linkClassName = 'text-gray-500 hover:text-gray-800 transition-all duration 200ms ease-in-out'
 
     return (
-        <footer className="lg:flex-row flex flex-col justify-between items-center pt-4 border-t border-solid border-t-gray-200">
+        <footer className="lg:flex-row flex flex-col justify-between items-center pt-4 border-t border-solid border-t-gray-200 mt-12 w-full lg:w-[40rem]">
             <div className="flex flex-col lg:items-start items-center">
                 <Text className="text-gray-800 bold pb-2 lg:pb-0">Oper</Text>
                 <Text variant="xs" className="text-gray-500 pb-2 lg:pb-0">contato@operdata.com.br</Text>

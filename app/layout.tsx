@@ -21,11 +21,13 @@ export default function RootLayout({ children }: Props) {
           href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&family=Montserrat:wght@900&family=Open+Sans:ital,wght@0,400;0,700;1,400&display=swap"
           rel="stylesheet" />
       </head>
-      <body className="lg:grid lg:grid-cols-[26.5rem_1fr] xl:grid-cols-[34.25rem_1fr] ">
-        <MainHeader/>
+      <body className="xl:pl-[34.25rem]">
+        <MainHeader />
         <main className="p-10">
-          <div className="h-[calc(100%-2.563rem)]">{children}</div>
-          <MainFooter/>
+          <div className="w-full lg:w-[40rem]">
+            {children}
+          </div>
+          <MainFooter />
         </main>
       </body>
     </html>

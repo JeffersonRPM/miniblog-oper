@@ -35,7 +35,7 @@ export default async function Home() {
   }
 
   return (
-    <article className="h-[calc(100%-3.563rem)]">
+    <article className="w-full lg:w-[40rem]">
       <Text as="h1" variant="3xl lg:4xl" className="w-full lg:w-[35rem] pb-6 lg:pb-6">Miniblog - Oper</Text>
 
       <Text variant="sm" className="text-gray-500">

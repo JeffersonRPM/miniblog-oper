@@ -20,11 +20,10 @@ export default async function BlogPage() {
     const posts = await fetchPosts();
 
     return (
-        <article className="h-[calc(100%-3.563rem)] overflow-y-auto mb-4">
+        <article className="h-[calc(100%-3.563rem)] mb-4">
             <header>
                 <Text as="h1" variant="3xl lg:4xl" className="pb-6 lg:pb-6">Miniblog - Oper - Posts</Text>
             </header>
-            <div className="lg:max-h-0">
                 {posts.length > 0 && (
                     <ul aria-label="Posts" className="grid gap-6 w-full lg:w-[41.375rem]">
                         {posts.map((post, index) => (
@@ -37,7 +36,6 @@ export default async function BlogPage() {
                         ))}
                     </ul>
                 )}
-            </div>
 
             {posts.length === 0 && (
                 <Text variant="xl">Nenhum post encontrado!</Text>
