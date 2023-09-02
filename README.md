@@ -1,5 +1,3 @@
-![image](https://github.com/JeffersonRPM/miniblog-oper/assets/48998618/7b05e5ee-0159-4f76-86ac-4e88c7ce0c2f)
-
 # Apoio para executar o projeto:
 
 -  **Instalar yarn:**
