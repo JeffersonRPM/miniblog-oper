@@ -1,0 +1,14 @@
+.logo-verde {
+    background-color: #57b952;
+}
+
+.logo-preto {
+    background: #283b4f;
+}
+
+.bg-logo {
+    background-color: white;
+    padding: 1.3rem;
+    border-radius: 0.7rem;
+    box-shadow: 0 0 0.5rem rgba(0, 0, 0, 0.2);
+}
