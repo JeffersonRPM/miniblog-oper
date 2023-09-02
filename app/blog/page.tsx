@@ -1,42 +1,49 @@
 import { Text } from "thon-ui";
 import PostsListItems from "@/src/domains/posts/components/post-list-items";
+import { Post } from "@/src/domains/posts/models/post";
 
-export default function BlogPage() {
+const baseURL = 'https://www.tabnews.com.br/api/v1';
+const postsEndpoint = '/contents/guscsales';
+
+async function fetchPosts() {
+    const postResponse = await fetch(`${baseURL}${postsEndpoint}`);
+    let posts = (await postResponse.json()) as Post[];
+
+    posts = posts.filter(post => !post['parent_id']).map(post => ({ ...post, created_at: new Date(post.created_at) }));
+
+    posts.sort((a, b) =>
+        (b.created_at as unknown as number) - (a.created_at as unknown as number)
+    );
+
+    return posts ? posts : [];
+}
+
+
+export default async function BlogPage() {
+    const posts = await fetchPosts();
+
     return (
-        <article className="h-[calc(100%-3.563rem)]">
+        <article className="h-[calc(100%-3.563rem)] overflow-y-auto mb-4">
             <header>
-                <Text as="h1" variant="3xl lg:4xl" className="w-full lg:w-[35rem] pb-6 lg:pb-6">Miniblog - Oper - Posts</Text>
+                <Text as="h1" variant="3xl lg:4xl" className="pb-6 lg:pb-6">Miniblog - Oper - Posts</Text>
             </header>
-
-            <ul aria-label="Posts" className="grid gap-6 w-full lg:w-[41.375rem]">
-                <li>
-                    <PostsListItems post={{
-                        slug: 'any-slug',
-                        title: 'Teste',
-                        created_at: new Date(2023, 8, 1),
-                    }}
-                        isLarge
-                        headerComplement=" - Última postagem..."
-                    />
-                </li>
-                <li>
-                    <PostsListItems post={{
-                        slug: 'any-slug-2',
-                        title: 'Teste2',
-                        created_at: new Date(2023, 8, 1),
-                    }}
-                    />
-                </li>
-                <li>
-                    <PostsListItems post={{
-                        slug: 'any-slug-3',
-                        title: 'Teste3',
-                        created_at: new Date(2023, 8, 1),
-                    }}
-                    />
-                </li>
-            </ul>
-
+            <div className="lg:max-h-0">
+                {posts.length > 0 && (
+                    <ul aria-label="Posts" className="grid gap-6 w-full lg:w-[41.375rem]">
+                        {posts.map((post, index) => (
+                            <li key={post.slug}>
+                                <PostsListItems post={post}
+                                    isLarge={index === 0}
+                                    headerComplement={index === 0 ? " - Última postagem..." : undefined}
+                                />
+                            </li>
+                        ))}
+                    </ul>
+                )}
+            </div>
+            {posts.length === 0 && (
+                <Text variant="xl">Nenhum post encontrado!</Text>
+            )}
         </article>
     );
 }
