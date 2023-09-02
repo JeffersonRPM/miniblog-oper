@@ -2,11 +2,8 @@ import { Text } from "thon-ui";
 import PostsListItems from "@/src/domains/posts/components/post-list-items";
 import { Post } from "@/src/domains/posts/models/post";
 
-const baseURL = 'https://www.tabnews.com.br/api/v1';
-const postsEndpoint = '/contents/guscsales';
-
 async function fetchPosts() {
-    const postResponse = await fetch(`${baseURL}${postsEndpoint}`);
+    const postResponse = await fetch(`${process.env.BLOG_PROVIDER_BASE_API}/contents/guscsales`);
     let posts = (await postResponse.json()) as Post[];
 
     posts = posts.filter(post => !post['parent_id']).map(post => ({ ...post, created_at: new Date(post.created_at) }));
@@ -41,6 +38,7 @@ export default async function BlogPage() {
                     </ul>
                 )}
             </div>
+
             {posts.length === 0 && (
                 <Text variant="xl">Nenhum post encontrado!</Text>
             )}

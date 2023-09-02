@@ -24,8 +24,8 @@ export default function RootLayout({ children }: Props) {
       <body className="lg:grid lg:grid-cols-[26.5rem_1fr] xl:grid-cols-[34.25rem_1fr] ">
         <MainHeader/>
         <main className="p-10">
-          {children}
-          <MainFooter />
+          <div className="h-[calc(100%-2.563rem)]">{children}</div>
+          <MainFooter/>
         </main>
       </body>
     </html>

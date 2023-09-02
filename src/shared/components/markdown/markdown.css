@@ -1,5 +1,5 @@
 .thon-ui-markdown {
-    @apply text-gray-700;
+    @apply text-gray-700
 }
 
 .thon-ui-markdown h2 {
@@ -10,14 +10,26 @@
     @apply mb-3;
 }
 
+.thon-ui-markdown p img {
+    @apply mt-3;
+}
+
 .thon-ui-markdown img {
     @apply rounded-lg mx-auto;
 }
 
 .thon-ui-markdown pre {
-    @apply bg-gray-200 rounded-md my-4 p-4 text-gray-800;
+    @apply bg-gray-200 rounded-md my-4 p-4 text-gray-800 whitespace-pre-wrap break-all;
+}
+
+.thon-ui-markdown code {
+    @apply whitespace-pre-wrap break-all;
 }
 
 .thon-ui-markdown a {
     @apply text-blue-500;
+}
+
+.thon-ui-markdown ul li {
+    @apply flex flex-col gap-2;
 }
