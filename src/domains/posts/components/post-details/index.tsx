@@ -1,10 +1,10 @@
 import Markdown from "@/src/shared/components/markdown";
-import { Post } from "../../models/post";
 import { Text } from "thon-ui";
 import { format } from "date-fns";
+import { PostDetail } from "../../models/post-detail";
 
 type Props = {
-    post: Post;
+    post: PostDetail;
 }
 
 export default function PostDetails({ post }: Props) {
@@ -16,8 +16,8 @@ export default function PostDetails({ post }: Props) {
             {post.title}
         </Text>
         
-        <section>
-            <Markdown value={post.body || ''} />
+        <section className="w-full lg:w-[50rem] mt-2 mb-9">
+            <Markdown value={post.body}/>
         </section>
 
     </>

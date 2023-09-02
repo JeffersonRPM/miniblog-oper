@@ -1,14 +1,12 @@
 import { Post } from "@/src/domains/posts/models/post";
+import { PostDetail } from "@/src/domains/posts/models/post-detail";
 import Markdown from "@/src/shared/components/markdown";
 import { format } from 'date-fns';
 import Link from "next/link";
 import { Text } from "thon-ui";
 
-const baseURL = 'https://www.tabnews.com.br/api/v1';
-const postsEndpoint = '/contents/guscsales';
-
 async function getLastPost() {
-  const postResponse = await fetch(`${baseURL}${postsEndpoint}`);
+  const postResponse = await fetch(`${process.env.BLOG_PROVIDER_BASE_API}/contents/guscsales`);
   let posts = (await postResponse.json()) as Post[];
 
   posts = posts.filter(post => !post['parent_id']).map(post => ({ ...post, created_at: new Date(post.created_at) }));
@@ -19,8 +17,8 @@ async function getLastPost() {
 
   const [lastPostFromList] = posts;
 
-  const lastPostResponse = await fetch(`${baseURL}${postsEndpoint}/${lastPostFromList.slug}`);
-  const lastPost = (await lastPostResponse.json()) as Post;
+  const lastPostResponse = await fetch(`${process.env.BLOG_PROVIDER_BASE_API}/contents/guscsales/${lastPostFromList.slug}`);
+  const lastPost = (await lastPostResponse.json()) as PostDetail;
 
   if (lastPost) {
     return { ...lastPost, created_at: new Date(lastPost.created_at) };
@@ -48,7 +46,7 @@ export default async function Home() {
       </Text>
 
       <div className={`relative before:content-[''] before:w-full before:h-[5.5rem] before:absolute before:bottom-0 before:left-0 before:bg-linear-bottom-white`}>
-        <Markdown value={lastPost.body || ''} className="h-[39vh] overflow-hidden mb-2" />
+        <Markdown value={lastPost.body} className="h-[39vh] overflow-hidden mb-2" />
       </div>
 
       <div className="flex items-center justify-center lg:justify-end mb-4">
