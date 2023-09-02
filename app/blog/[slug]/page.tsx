@@ -1,6 +1,5 @@
 import { Text } from "thon-ui";
 import PostDetails from "@/src/domains/posts/components/post-details";
-import { Post } from "@/src/domains/posts/models/post";
 import { PostDetail } from "@/src/domains/posts/models/post-detail";
 
 type Props = {
@@ -25,6 +24,6 @@ async function getPost(slug: string) {
 export default async function BlogpostDetailsPage({ params }: Props) {
     const { slug } = params;
     const post = await getPost(slug);
-
+    
     return post ? <PostDetails post={post}/> : <Text variant="xl">Post não encontrado!</Text>
 }

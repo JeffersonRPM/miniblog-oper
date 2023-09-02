@@ -20,6 +20,9 @@ export default function PostDetails({ post }: Props) {
             <Markdown value={post.body}/>
         </section>
 
+        <Text as="h3" variant="xl lg:2xl" className="w-full lg:w-[35rem] mt-2 mb-9">
+            Comentarios:
+        </Text>
     </>
 
 }
