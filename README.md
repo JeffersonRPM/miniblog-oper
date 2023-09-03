@@ -29,7 +29,7 @@
 ```
 <br>
 
-- **Descompactar o Arquivo `.env` ques está zipado**
+- **Descompactar o Arquivo `.env` que está zipado**
 
 ## Iniciar o projeto: 
 ```
